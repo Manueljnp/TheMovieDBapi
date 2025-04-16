@@ -1,0 +1,38 @@
+﻿@model List<ML.Peliculas>
+@{
+    ViewBag.Title = "PeliculasPopulares";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PeliculasPopulares</h2>
+
+<style>
+    .card-img-top {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5)
+    }
+</style>
+
+
+<div class="container">
+    <h2 class="my-4">Películas Populares</h2>
+    <div class="row flex-nowrap overflow-auto">
+        @foreach (var p in Model)
+        {
+            <div class="col-3" style="min-width: 180px;">
+                <div class="card h-100 text-center">
+                    <img src="https://image.tmdb.org/t/p/w200/@p.poster_path" class="card-img-top" alt="@p.title">
+                    <div class="card-body">
+                        <span class="badge bg-success">@p.vote_average</span>
+                        <h6 class="card-title mt-2">@p.title</h6>
+                        <small class="text-muted">@p.release_date</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
